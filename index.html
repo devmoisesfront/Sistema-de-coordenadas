@@ -3,70 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bienvenidos al Sistema de Gestión de la Medida</title>
-    <style>
-        body {
-            font-family: 'Courier New', monospace;
-            text-align: center;
-            margin: 50px;
-        }
-        h1 {
-            color: #333;
-        }
-        button {
-            padding: 10px 20px;
-            font-size: 16px;
-            margin: 10px;
-        }
-    </style>
+    <title>ME</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <h1>Bienvenidos al Sistema de Gestión de la Medida</h1>
+    <h1>Bienvenidos al sistema Medida especial </h1>
     <button onclick="consultarInformacion()">Consultar Información</button>
     <button onclick="actualizarInformacion()">Actualizar Información</button>
     <button onclick="visualizarInformacion()">Visualizar Información</button>
-
-    <script>
-        function consultarInformacion() {
-            // Aquí puedes realizar una llamada a la API para consultar información
-            console.log("Consultar información");
-        }
-
-        function actualizarInformacion() {
-            // Aquí puedes realizar una llamada a la API para obtener datos a actualizar
-            console.log("Actualizar información");
-
-            // Supongamos que tienes algunos datos para enviar al formulario
-            const datosActualizar = {
-                campo1: 'valor1',
-                campo2: 'valor2'
-            };
-
-            // Crear un formulario dinámicamente
-            const form = document.createElement('form');
-            form.setAttribute('method', 'post');
-            form.setAttribute('action', 'actualizar.html');
-
-            // Crear campos de entrada para cada dato
-            for (const key in datosActualizar) {
-                if (datosActualizar.hasOwnProperty(key)) {
-                    const input = document.createElement('input');
-                    input.setAttribute('type', 'hidden');
-                    input.setAttribute('name', key);
-                    input.setAttribute('value', datosActualizar[key]);
-                    form.appendChild(input);
-                }
-            }
-
-            // Agregar el formulario al cuerpo del documento y enviarlo
-            document.body.appendChild(form);
-            form.submit();
-        }
-
-        function visualizarInformacion() {
-            // Aquí puedes realizar una llamada a la API para visualizar información
-            console.log("Visualizar información");
-        }
-    </script>
+    <script src="script.js"></script>
 </body>
 </html>

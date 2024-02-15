@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Consultar Información - Sistema de Gestión de la Medida</title>
+    <style>
+        body {
+            font-family: 'Courier New', monospace;
+            text-align: center;
+            margin: 50px;
+        }
+        table {
+            border-collapse: collapse;
+            width: 80%;
+            margin: 20px auto;
+        }
+        th, td {
+            border: 1px solid #333;
+            padding: 10px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        h2 {
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+    <h2>Información de los Circuitos</h2>
+
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Campo1</th>
+                <th>Campo2</th>
+                <!-- Agrega más columnas según la estructura de tus datos -->
+            </tr>
+        </thead>
+        <tbody id="tablaDatos">
+            <!-- Aquí se agregarán dinámicamente las filas de la tabla -->
+        </tbody>
+    </table>
+
+    <script>
+        // Supongamos que obtienes los datos de la API en un formato similar a esto
+        const datosCircuitos = [
+            { id: 1, campo1: 'valor1', campo2: 'valor2' },
+            { id: 2, campo1: 'valor3', campo2: 'valor4' },
+            // ... Agrega más datos según tu estructura
+        ];
+
+        // Función para llenar la tabla con los datos obtenidos
+        function llenarTabla() {
+            const tabla = document.getElementById('tablaDatos');
+
+            datosCircuitos.forEach(circuito => {
+                const fila = document.createElement('tr');
+                for (const key in circuito) {
+                    if (circuito.hasOwnProperty(key)) {
+                        const celda = document.createElement('td');
+                        celda.textContent = circuito[key];
+                        fila.appendChild(celda);
+                    }
+                }
+                tabla.appendChild(fila);
+            });
+        }
+
+        // Llama a la función para llenar la tabla cuando se carga la página
+        document.addEventListener('DOMContentLoaded', llenarTabla);
+    </script>
+</body>
+</html>

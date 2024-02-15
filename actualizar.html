@@ -47,8 +47,24 @@
     </style>
 </head>
 <body>
+    <form action="procesar_formulario.php" method="post">
+        <label for="NIC">NIC:</label>
+        <input type="text" name="NIC" required>
+        <label for="territorio">Territorio:</label>
+        <input type="text" id="territorio" name="territorio" readonly>
+        <label for="codigo_sic">Código SIC:</label>
+        <input type="text" id="codigo_sic" name="codigo_sic" readonly>
+        <label for="nombre">Nombre:</label>
+        <input type="text" id="nombre" name="nombre" readonly>
 
-    <form>
+        <label for="lat_def">Latitud:</label>
+        <input type="text" id="lat_def" name="lat_def" readonly>
+
+        <label for="long_def">Longitud:</label>
+        <input type="text" id="long_def" name="long_def" readonly>
+
+
+    
         <div class="form-group">
             <label for="coordenadas">Coordenadas GPS de la Medida:</label>
             <input type="text" id="coordenadas" name="coordenadas" required>
