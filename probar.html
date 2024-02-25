@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulario de Inspección</title>
+    <script>
+        function mostrarTipoLector() {
+            var resultadoInspeccion = document.getElementById("resultadoInspeccion").value;
+            var requiereRevisionDiv = document.getElementById("requiereRevisionDiv");
+
+            if (resultadoInspeccion === "Conforme") {
+                requiereRevisionDiv.style.display = "none"; // Ocultar la pregunta si es conforme
+            } else {
+                requiereRevisionDiv.style.display = "block"; // Mostrar la pregunta si es no conforme
+            }
+        }
+
+        function mostrarNovedades() {
+            // Aquí puedes agregar lógica adicional si es necesario
+        }
+    </script>
+</head>
+<body>
+    <form>
+        <label for="resultadoInspeccion">Resultado Inspección:</label>
+        <select id="resultadoInspeccion" name="resultadoInspeccion" required onchange="mostrarTipoLector()">
+            <option value="">Seleccionar Resultado Inspección</option>
+            <option value="Conforme">Conforme</option>
+            <option value="NoConforme">No Conforme</option>
+        </select>
+
+        <div id="requiereRevisionDiv">
+            <label for="requiereRevision">¿Requiere Revisión?</label>
+            <select id="requiereRevision" name="requiereRevision" required>
+                <option value="">Seleccionar revisión</option>
+                <option value="Si">Si</option>
+                <option value="No">No</option>
+            </select>
+        </div>
+    </form>
+</body>
+</html>

@@ -2,15 +2,239 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ME</title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <link rel="stylesheet" href="style.css">
+    <title>Sistema Medida especial </title>
+    <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
+
 </head>
 <body>
-    <h1>Bienvenidos al sistema Medida especial </h1>
-    <button onclick="consultarInformacion()">Consultar Información</button>
-    <button onclick="actualizarInformacion()">Actualizar Información</button>
-    <button onclick="visualizarInformacion()">Visualizar Información</button>
+  <form id="miFormulario" action="procesar_formulario.php" method="post">
+    <label for="nicValidar">Validar NIC:</label>
+    <input type="text" id="nicValidar" name="nicValidar" required>
+    <button type="button" onclick="validarNic()">Validar NIC</button>
+
+    <table>
+      <thead>
+          <tr>
+              <th id="mt">MT</th>
+              <th id="ct">CT</th>
+              <th id="nic">NIC</th>
+              <th id="mc">MC</th>
+          </tr>
+      </thead>
+
+      
+      <tbody>
+          <tr>
+              <td id="mt1"></td>
+              <td id="ct1"></td>
+              <td id="nic1"></td>
+              <td id="mc1"></td> 
+          </tr>
+      </tbody>
+
+      <thead>
+          <tr>
+              <th id="territorio">TERRITORIO</th>
+              <th id="lat_def">LATITUD:</th>
+              <th id="long_def">LONGITUD:</th>
+          </tr>
+      </thead>
+
+      <tbody>
+          <tr>
+              <td id="territorio1"></td>
+          
+              <td id="lat_def1"></td>
+              <td id="long_def1"></td>
+          </tr>
+      </tbody>
+
+      <thead>
+          <tr>
+    
+              <th id="circuito">CIRCUITO</th>
+              <th id="codigo-sic">CODIGO SIC</th>
+          </tr>
+      </thead>
+      <tbody>
+          <tr>
+              <td id="circuito1"></td>
+              <td id="codigo-sic1"></td>
+          </tr>
+      </tbody>
+
+      <thead>
+        <tr>
+            <th id="nombre">USUARIO</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        <tr>
+            <td id="nombre1"></td>
+        </tr>
+    </tbody>
+
+
+
+
+  </table>
+  
+        <label for="coordenadas">Coordenadas GPS :</label>
+        <input type="text" id="coordenadas" name="coordenadas" required>
+        <button type="button" onclick="obtenerYGuardarCoordenadas()">OBTENER COORDENADAS</button>
+        <button onclick="borrarCoordenadas()">Borrar Coordenadas</button>
+        
+        <label for="fullName">Nombre Completo </label>
+        <input type="text" id="fullName" pattern="[a-z]+" title="Solo se permiten letras minúsculas" oninput="formatoNombre()" required>
+
+            <label for="currentDate">Fecha actual:</label>
+            <input type="text" id="currentDate" readonly>
+
+            <button type="button" onclick="guardarYMostrarFecha()">Guardar y Mostrar Fecha</button>
+
+        <label for="actividadComercial">Actividad Comercial:</label>
+        <select id="actividadComercial" name="actividadComercial" required>
+                <option value="">Seleccionar actividad comercial</option>
+                <option value="AGROINDUSTRIAL RIEGO/DRENAJE">AGROINDUSTRIAL RIEGO/DRENAJE</option>
+                <option value="ALCALDIA U OFICINA PUBLICA">ALCALDIA U OFICINA PUBLICA</option>
+                <option value="ALMACEN DE VENTA">ALMACEN DE VENTA</option>
+                <option value="ALMACENAMIENTO Y DEPÓSITO">ALMACENAMIENTO Y DEPÓSITO</option>
+                <option value="APARTAMENTO -CASA">APARTAMENTO -CASA</option>
+                <option value="AREA COMUN">AREA COMUN</option>
+                <option value="ASERRADO, ACEPILLADO E IMPREGNACIÓN DE LA MADERA">ASERRADO, ACEPILLADO E IMPREGNACIÓN DE LA MADERA</option>
+                <option value="ASOCIACIONES RELIGIOSAS">ASOCIACIONES RELIGIOSAS</option>
+                <option value="BANCOS COMERCIALES">BANCOS COMERCIALES</option>
+                <option value="BIBLIOTECAS Y ARCHIVOS">BIBLIOTECAS Y ARCHIVOS</option>
+                <option value="BILLARES">BILLARES</option>
+                <option value="BODEGA DE FABRICACION">BODEGA DE FABRICACION</option>
+                <option value="CALL CENTER">CALL CENTER</option>
+                <option value="CAPTACIÓN, TRATAMIENTO Y DISTRIBUCIÓN DE AGUA">CAPTACIÓN, TRATAMIENTO Y DISTRIBUCIÓN DE AGUA</option>
+                <option value="CARNICERIA">CARNICERIA</option>
+                <option value="CASA FINCA CAMPESTRE">CASA FINCA CAMPESTRE</option>
+                <option value="CHATARRERIA">CHATARRERIA</option>
+                <option value="CINE">CINE</option>
+                <option value="COLEGIO">COLEGIO</option>
+                <option value="CONSTRUCCIÓN DE OTRAS OBRAS DE INGENIERÍA CIVIL">CONSTRUCCIÓN DE OTRAS OBRAS DE INGENIERÍA CIVIL</option>
+                <option value="CUIDADO DE PERSONAS MAYORES">CUIDADO DE PERSONAS MAYORES</option>
+                <option value="DISCOTECA">DISCOTECA</option>
+                <option value="EMPRESA- VARIAS">EMPRESA- VARIAS</option>
+                <option value="EPS -IPS">EPS -IPS</option>
+                <option value="ESTACION DE SERVICIO DE COMBUSTIBLES">ESTACION DE SERVICIO DE COMBUSTIBLES</option>
+                <option value="ESTADIO -DEPORTE">ESTADIO -DEPORTE</option>
+                <option value="FINCA AGRICOLA - GANADERA">FINCA AGRICOLA - GANADERA</option>
+                <option value="FINCA AVICOLA">FINCA AVICOLA</option>
+                <option value="FINCA AVICOLA - PSICOLA">FINCA AVICOLA - PSICOLA</option>
+                <option value="FINCA PISCICOLA">FINCA PISCICOLA</option>
+                <option value="FINCA RECREACIONAL">FINCA RECREACIONAL</option>
+                <option value="GIMNASIO">GIMNASIO</option>
+                <option value="HOSPITAL">HOSPITAL</option>
+                <option value="HOTEL">HOTEL</option>
+                <option value="INDUSTRIA DE PRODUCTOS">INDUSTRIA DE PRODUCTOS</option>
+                <option value="JUEGOS INFANTILES">JUEGOS INFANTILES</option>
+                <option value="MOTEL">MOTEL</option>
+                <option value="RESTAURANTE-BAR">RESTAURANTE-BAR</option>
+                <option value="PELUQUERIA-SPA">PELUQUERIA-SPA</option>
+                <option value="SUPERMERCADO">SUPERMERCADO</option>
+                <option value="TIENDA- PANADERIA">TIENDA- PANADERIA</option>
+                <option value="UNIVERSIDAD O CORPORACION">UNIVERSIDAD O CORPORACION</option>
+        </select>
+
+        <label for="tipoMedida">Tipo de Medida:</label>
+        <select id="tipoMedida" name=" Tipo medida" required>
+            <option value="">Seleccionar Tipo Medida</option>
+            <option value="Indirecta">Indirecta</option>
+            <option value="Semidirecta">Semidirecta</option>
+            <option value="Directa">Directa</option>
+        </select>
+
+        <label for="ubicacionMedida">Ubicación de la Medida:</label>
+        <select id="ubicacionMedida" name="ubicacionMedida" required>
+            <option value="">Seleccionar Tipo de ubicación de la medida </option>
+            <option value="DLP-tipo interior">DLP-tipo interior</option>
+            <option value="DLP-tipo exterior">DLP-tipo exterior</option>
+            <option value="FLP-tipo interior">FLP-tipo interior</option>
+            <option value="FLP-tipo exterior">FLP-tipo exterior</option>
+        </select>
+        <label for="kvaEncontrado">KVA Encontrado:</label>
+        <select id="kvaEncontrado" name="kvaEncontrado" required>
+            <option value="">Seleccionar el KVA encontrado</option>
+            <option value="30"><30</option>
+            <option value="30">30</option>
+            <option value="37.5">37,5</option>
+            <option value="45">45</option>
+            <option value="75">75</option>
+            <option value="112.5">112,5</option>
+            <option value="150">150</option>
+            <option value="200">200</option>
+            <option value="300">300</option>
+            <option value="400">400</option>
+            <option value="500">500</option>
+            <option value=">500">>500</option>
+            <option value=">1000">>1000</option>
+        </select>
+
+            <form>
+                <label for="resultadoInspeccion">Resultado Inspección:</label>
+                <select id="resultadoInspeccion" name="resultadoInspeccion" required onchange="mostrarNovedades()">
+                    <option value="">Seleccionar Resultado Inspección</option>
+                    <option value="Conforme">Conforme</option>
+                    <option value="NoConforme">No Conforme</option>
+                </select>
+
+                <div id="novedadEncontrada" style="display:none;">
+                    <label for="novedadEncontrada">Novedad Encontrada:</label>
+                    <select id="novedadEncontrada" name="novedadEncontrada" required>
+                        <option value="">Seleccionar Novedad Encontrada</option>
+                        <option value="Aumento de potencia sin autorizacion">Aumento de potencia sin autorización</option>
+                        <option value="Directo sin medidor">Directo sin medidor</option>
+                        <option value="Directo con medidor">Directo con medidor</option>
+                        <option value="Elemento TC o TP desconectado">Elemento TC o TP desconectado</option>
+                        <option value="Requiere reubicar al limite de la propiedad">Requiere reubicar al límite de la propiedad</option>
+                        <option value="Requiere normalizar según normativa Air-e">Requiere normalizar según normativa Air-e</option>
+                        <option value="Requiere normalizar por avance tecnológico">Requiere normalizar por avance tecnológico</option>
+                        <option value="Consumos no acordes a su actividad comercial">Consumos no acordes a su actividad comercial</option>
+                        <option value="Sin novedad">Sin Novedad</option>
+                        <option value="Predio desocupado con medida energizada">Predio desocupado con medida energizada</option>
+                        <option value="Predio desocupado con medida desconectada">Predio desocupado con medida desconectada</option>
+                        <option value="Predio inexistente o demolido sin medida">Predio inexistente o demolido sin medida</option>
+                        <option value="Predio unificado a otra cuenta">Predio unificado a otra cuenta</option>
+                        <option value="Provisonal de obra sin uso / desconectado">Provisonal de obra sin uso / desconectado</option>
+                    </select>
+                </div>
+
+
+
+                <label for="requiereRevision">¿Requiere Revisión?</label>
+                <select id="requiereRevision" name="requiereRevision" required onchange="mostrarTipoLector()">
+                    <option value="">Seleccionar revisión</option>
+                    <option value="Si">Si</option>
+                    <option value="No">No</option>
+                </select>
+
+                <label for="tipoLector" id="labelTipoLector" style="display:none;">Tipo de Lector Requerido:</label>
+                <select id="tipoLector" name="tipoLector" required style="display:none;">
+                    <option value="">Seleccionar Tipo de revisión</option>a
+                    <option value="Con escalera">Con escalera</option>
+                    <option value="Sin escalera">Sin escalera</option>
+                </select>
+        <label for="observaciones">Observaciones Generales:</label>
+    <textarea id="observaciones" name="observaciones" rows="4" cols="50"></textarea>
+
+    <!-- Campo para Añadir Fotos -->
+    <label for="fotos">Añadir Fotos:</label>
+    <input type="file" id="fotos" name="fotos" accept="image/*" multiple>
+
+
+
+        <button type="button" onclick="enviarFormulario()">Enviar</button>
+    </form>
+
+
     <script src="script.js"></script>
+
 </body>
 </html>
